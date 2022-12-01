@@ -5,6 +5,9 @@ Advent of Code is an Advent calendar of small programming puzzles for a variety 
 
 ## Code it yourself
 AoC:
+
 https://adventofcode.com/2022/
+
 Reddit:
+
 https://www.reddit.com/r/adventofcode/
