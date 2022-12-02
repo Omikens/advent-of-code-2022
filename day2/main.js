@@ -10,6 +10,27 @@ let playerMoveSwitch = 'enemy';
 let myScore = 0;
 let enemyMove;
 
+function moveConverter(enemyMove, myMove){
+    switch (true){
+        case (enemyMove == 'A' && myMove == 'X'):
+        case (enemyMove == 'B' && myMove == 'Z'):
+        case (enemyMove == 'C' && myMove == 'Y'):
+            myMove = 'Z';
+            break;
+        case (enemyMove == 'A' && myMove == 'Y'):
+        case (enemyMove == 'B' && myMove == 'X'):
+        case (enemyMove == 'C' && myMove == 'Z'):
+            myMove = 'X';
+            break;
+        case (enemyMove == 'A' && myMove == 'Z'):
+        case (enemyMove == 'B' && myMove == 'Y'):
+        case (enemyMove == 'C' && myMove == 'X'):
+            myMove = 'Y';
+            break;
+    }
+    return myMove;
+}
+
 for (move of data){
     if (move != ' ' && move != '\n'){
         if (playerMoveSwitch == 'enemy'){
@@ -18,6 +39,9 @@ for (move of data){
             playerMoveSwitch = 'me';
         } else {
             console.log(`My move: ${move}`);
+
+            move = moveConverter(enemyMove, move); //call this function to get the answer for the second part of the puzzle
+
             switch (move){
                 case 'X':
                     console.log(1);
