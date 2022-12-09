@@ -15,7 +15,9 @@ let splitData = getData().split(/\r?\n/);
 
 let firstAssignment;
 let secondAssignment;
-let start, end;
+let start1, end1;
+let start2, end2;
+let numberOfOverlaps = 0;
 
 
 function displayVisualRepresenatation(end, start){
@@ -37,24 +39,35 @@ function displayVisualRepresenatation(end, start){
     console.log(temp);
 }
 
+function checkOverlap(end1, start1, end2, start2){
+    if ((start1>=start2) && (end1<=end2) || (start2)>=(start1) && (end2<=end1)) {
+        console.log("overlap");
+        numberOfOverlaps++;
+    }
+}
+
 // For every pair split them and assign 1 and 2 part into different variables
 for (let pair of splitData){
     firstAssignment = pair.split(/,/);
+
     secondAssignment = firstAssignment[1];
     
-    start = secondAssignment.split(/-/)[0];
-    end = secondAssignment.split(/-/)[1];
-
+    start2 = secondAssignment.split(/-/)[0];
+    end2 = secondAssignment.split(/-/)[1];
     
-    displayVisualRepresenatation(end, start);
-
     firstAssignment = firstAssignment[0];
 
-    start = firstAssignment.split(/-/)[0];
-    end = firstAssignment.split(/-/)[1];
+    start1 = firstAssignment.split(/-/)[0];
+    end1 = firstAssignment.split(/-/)[1];
 
-    displayVisualRepresenatation(end, start);
+    displayVisualRepresenatation(end1, start1);
+
+    displayVisualRepresenatation(end2, start2);
+
+    checkOverlap(parseInt(end1), parseInt(start1), parseInt(end2), parseInt(start2));
 
     console.log("----------------------");
     //console.log(start);
 }
+
+console.log(numberOfOverlaps);
