@@ -18,8 +18,9 @@ let secondAssignment;
 let start1, end1;
 let start2, end2;
 let numberOfOverlaps = 0;
+let numberOfAnyOverlaps = 0;
 
-
+// Check the ranges of pairs and print numbers for every range, fill all the empty places with dots
 function displayVisualRepresenatation(end, start){
     let temp;
 
@@ -39,10 +40,20 @@ function displayVisualRepresenatation(end, start){
     console.log(temp);
 }
 
+// If one of the pairs fully contains the other then increment the number of numberOfOverlaps
 function checkOverlap(end1, start1, end2, start2){
     if ((start1>=start2) && (end1<=end2) || (start2)>=(start1) && (end2<=end1)) {
         console.log("overlap");
         numberOfOverlaps++;
+    }
+}
+
+// If pairs overlap in any point increment the number numberOfAnyOverlaps
+function checkAnyOverlap(end1, start1, end2, start2){
+    if (((start1<=end2) && (start1>=start2)) || ((end1>=start2) && (end1<=end2)) || (start2)>=(start1) && (end2<=end1)) {
+        console.log("overlap");
+        console.log(numberOfAnyOverlaps);
+        numberOfAnyOverlaps++;
     }
 }
 
@@ -66,8 +77,10 @@ for (let pair of splitData){
 
     checkOverlap(parseInt(end1), parseInt(start1), parseInt(end2), parseInt(start2));
 
+    checkAnyOverlap(parseInt(end1), parseInt(start1), parseInt(end2), parseInt(start2));
+
     console.log("----------------------");
-    //console.log(start);
 }
 
-console.log(numberOfOverlaps);
+console.log(`Number of pairs where one fully contains the other: ${numberOfOverlaps}`);
+console.log(`Number of any overlaping pairs: ${numberOfAnyOverlaps}`);
